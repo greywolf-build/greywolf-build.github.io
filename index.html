@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="favicon.ico" type="image/x-icon">
 <title>GREYWOLF — Your Gateway to Manifestation</title>
 <meta name="description" content="Greywolf — builder, architect, creative. Turning ideas into reality. Apps, platforms, Web3 — shipped a full decentralized streaming platform alone in one month.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -23,16 +24,16 @@
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
 :root {
-  --bg: #0a0908;
-  --bg-elevated: #0f0d0a;
-  --surface: #1a1610;
-  --border: #2a2418;
-  --text: #e6e0d2;
-  --text-dim: #8a7e6b;
-  --accent: #5cb270;
-  --accent-glow: rgba(92, 178, 112, 0.15);
-  --hot: #d4952a;
-  --gold: #c87941;
+  --bg: #f5f5f0;
+  --bg-elevated: #eeeee8;
+  --surface: #f5f5f0;
+  --border: #1a1a1a;
+  --text: #1a1a1a;
+  --text-dim: #555555;
+  --accent: #2d8a4e;
+  --accent-glow: rgba(45, 138, 78, 0.08);
+  --hot: #ff4500;
+  --gold: #8b5cf6;
   --font-display: 'Syne', sans-serif;
   --font-body: 'Space Grotesk', sans-serif;
   --font-mono: 'Space Mono', monospace;
@@ -41,7 +42,7 @@
 html {
   scroll-behavior: smooth;
   scrollbar-width: thin;
-  scrollbar-color: var(--accent) var(--bg);
+  scrollbar-color: var(--accent) #f0f0f0;
 }
 
 body {
@@ -91,7 +92,7 @@ a:hover { text-decoration: underline; }
 .cursor.hovering {
   width: 50px;
   height: 50px;
-  background: rgba(92, 178, 112, 0.1);
+  background: rgba(45, 138, 78, 0.08);
   border-color: var(--hot);
 }
 
@@ -121,8 +122,8 @@ nav {
   justify-content: space-between;
   align-items: center;
   backdrop-filter: blur(10px);
-  background: rgba(10, 9, 8, 0.8);
-  border-bottom: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.85);
+  border-bottom: 2px solid var(--border);
   transition: transform 0.4s ease;
 }
 
@@ -135,6 +136,14 @@ nav.hidden { transform: translateY(-100%); }
   letter-spacing: 0.15em;
   color: var(--text);
   text-transform: uppercase;
+}
+
+.nav-logo-img {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+  margin-right: 0.6rem;
+  vertical-align: middle;
 }
 
 .nav-logo span { color: var(--accent); }
@@ -187,8 +196,8 @@ nav.hidden { transform: translateY(-100%); }
   top: 0; left: 0;
   width: 100%; height: 100%;
   background:
-    radial-gradient(ellipse 80% 60% at 20% 40%, rgba(92, 178, 112, 0.06) 0%, transparent 70%),
-    radial-gradient(ellipse 60% 50% at 80% 60%, rgba(212, 149, 42, 0.05) 0%, transparent 70%);
+    radial-gradient(ellipse 80% 60% at 20% 40%, rgba(45, 138, 78, 0.04) 0%, transparent 70%),
+    radial-gradient(ellipse 60% 50% at 80% 60%, rgba(45, 138, 78, 0.03) 0%, transparent 70%);
   z-index: 0;
 }
 
@@ -313,8 +322,8 @@ nav.hidden { transform: translateY(-100%); }
    ═══════════════════════════════════════════ */
 .marquee-wrap {
   overflow: hidden;
-  border-top: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
+  border-top: 2px solid var(--border);
+  border-bottom: 2px solid var(--border);
   padding: 1.2rem 0;
   background: var(--bg-elevated);
 }
@@ -401,7 +410,28 @@ section {
 /* ═══════════════════════════════════════════
    STORY SECTION
    ═══════════════════════════════════════════ */
-.story { position: relative; }
+.story {
+  position: relative;
+  background: var(--text);
+  color: var(--bg);
+  max-width: 100%;
+  padding: 8rem 3rem;
+}
+
+.story .section-label { color: var(--accent); }
+.story .section-label::before { background: var(--accent); }
+.story .section-title { color: var(--bg); }
+.story .story-text p { color: rgba(245, 245, 240, 0.7); }
+.story .story-text p:first-of-type { color: var(--bg); }
+.story .story-text strong { color: var(--bg); }
+.story .story-pull blockquote { color: var(--bg); border-left-color: var(--accent); }
+
+.story > .reveal,
+.story > .story-grid {
+  max-width: 1400px;
+  margin-left: auto;
+  margin-right: auto;
+}
 
 .story-grid {
   display: grid;
@@ -444,21 +474,46 @@ section {
 }
 
 .story-pull blockquote span {
-  background: linear-gradient(135deg, var(--accent), var(--hot));
+  background: linear-gradient(135deg, var(--accent), var(--hot), var(--gold));
+  background-size: 200% 200%;
+  animation: gradientShift 4s ease infinite;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+}
+
+@keyframes gradientShift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
 }
 
 /* ═══════════════════════════════════════════
    FINEMA CASE STUDY
    ═══════════════════════════════════════════ */
 .finema-section {
-  background: var(--bg-elevated);
+  background: var(--accent);
   padding: 8rem 3rem;
   max-width: 100%;
   position: relative;
+  color: #fff;
 }
+
+.finema-section .section-label { color: rgba(255,255,255,0.7); }
+.finema-section .section-label::before { background: rgba(255,255,255,0.7); }
+.finema-section .section-title { color: #fff; }
+.finema-section .finema-description { color: rgba(255,255,255,0.8); }
+.finema-section .finema-description strong { color: #fff; }
+.finema-section .finema-domain { color: #fff; }
+.finema-section .finema-domain:hover { color: var(--bg); }
+.finema-section .finema-badge { background: rgba(255,255,255,0.15); border-color: rgba(255,255,255,0.3); color: #fff; }
+.finema-section .finema-badge .dot { background: #fff; }
+.finema-section .stat-card { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.3); box-shadow: 4px 4px 0px rgba(0,0,0,0.2); }
+.finema-section .stat-card:hover { border-color: #fff; box-shadow: 4px 4px 0px rgba(0,0,0,0.3); }
+.finema-section .stat-number { color: #fff; }
+.finema-section .stat-label { color: rgba(255,255,255,0.7); }
+.finema-section .finema-tech-label { color: rgba(255,255,255,0.7); }
+.finema-section .tech-pill { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.3); color: #fff; box-shadow: 3px 3px 0px rgba(0,0,0,0.2); }
+.finema-section .tech-pill:hover { background: rgba(255,255,255,0.2); border-color: #fff; color: #fff; box-shadow: 3px 3px 0px rgba(0,0,0,0.3); }
 
 .finema-section::before {
   content: '';
@@ -466,8 +521,8 @@ section {
   top: 0; left: 0;
   width: 100%; height: 100%;
   background:
-    radial-gradient(ellipse 50% 50% at 80% 20%, rgba(92, 178, 112, 0.05) 0%, transparent 70%),
-    radial-gradient(ellipse 40% 40% at 10% 80%, rgba(212, 149, 42, 0.04) 0%, transparent 70%);
+    radial-gradient(ellipse 50% 50% at 80% 20%, rgba(45, 138, 78, 0.03) 0%, transparent 70%),
+    radial-gradient(ellipse 40% 40% at 10% 80%, rgba(45, 138, 78, 0.02) 0%, transparent 70%);
   pointer-events: none;
 }
 
@@ -491,8 +546,8 @@ section {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  background: rgba(92, 178, 112, 0.08);
-  border: 1px solid rgba(92, 178, 112, 0.2);
+  background: rgba(45, 138, 78, 0.06);
+  border: 1px solid rgba(45, 138, 78, 0.15);
   padding: 0.4rem 1rem;
   border-radius: 100px;
   font-family: var(--font-mono);
@@ -573,15 +628,17 @@ section {
 
 .stat-card {
   background: var(--surface);
-  border: 1px solid var(--border);
+  border: 2px solid var(--border);
   padding: 2rem;
-  border-radius: 8px;
+  border-radius: 2px;
   transition: border-color 0.3s, transform 0.3s;
+  box-shadow: 4px 4px 0px var(--border);
 }
 
 .stat-card:hover {
   border-color: var(--accent);
-  transform: translateY(-4px);
+  box-shadow: 4px 4px 0px var(--accent);
+  transform: translate(-2px, -2px);
 }
 
 .stat-number {
@@ -621,22 +678,47 @@ section {
   font-size: 0.78rem;
   padding: 0.5rem 1.2rem;
   background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 100px;
+  border: 2px solid var(--border);
+  border-radius: 2px;
   color: var(--text);
   transition: all 0.3s;
   letter-spacing: 0.02em;
+  box-shadow: 3px 3px 0px var(--border);
 }
 
 .tech-pill:hover {
   border-color: var(--accent);
   color: var(--accent);
-  background: var(--accent-glow);
+  box-shadow: 3px 3px 0px var(--accent);
+  transform: translate(-1px, -1px);
 }
 
 /* ═══════════════════════════════════════════
    SKILLS
    ═══════════════════════════════════════════ */
+.skills {
+  background: var(--text);
+  color: var(--bg);
+  max-width: 100%;
+  padding: 8rem 3rem;
+}
+
+.skills > .reveal,
+.skills > .skills-grid {
+  max-width: 1400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.skills .section-label { color: var(--accent); }
+.skills .section-label::before { background: var(--accent); }
+.skills .section-title { color: var(--bg); }
+.skills .skill-card { background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.2); box-shadow: 4px 4px 0px rgba(255,255,255,0.1); }
+.skills .skill-card:hover { border-color: var(--accent); box-shadow: 4px 4px 0px var(--accent); }
+.skills .skill-name { color: var(--bg); }
+.skills .skill-desc { color: rgba(245,245,240,0.6); }
+.skills .skill-icon { color: var(--accent); }
+
 .skills-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -645,31 +727,20 @@ section {
 
 .skill-card {
   background: var(--surface);
-  border: 1px solid var(--border);
+  border: 2px solid var(--border);
   padding: 2.5rem;
-  border-radius: 8px;
+  border-radius: 2px;
   position: relative;
   overflow: hidden;
-  transition: border-color 0.4s, transform 0.3s;
-}
-
-.skill-card::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0;
-  width: 100%; height: 2px;
-  background: linear-gradient(90deg, var(--accent), var(--hot));
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 0.4s;
+  transition: border-color 0.3s, transform 0.3s;
+  box-shadow: 4px 4px 0px var(--border);
 }
 
 .skill-card:hover {
   border-color: var(--accent);
-  transform: translateY(-4px);
+  box-shadow: 4px 4px 0px var(--accent);
+  transform: translate(-2px, -2px);
 }
-
-.skill-card:hover::before { transform: scaleX(1); }
 
 .skill-icon {
   font-size: 2rem;
@@ -698,6 +769,7 @@ section {
 .contact {
   text-align: center;
   padding: 10rem 3rem;
+  background: var(--bg);
 }
 
 .contact .section-label { justify-content: center; }
@@ -714,6 +786,8 @@ section {
 
 .contact-title .gradient-text {
   background: linear-gradient(135deg, var(--accent) 0%, var(--hot) 50%, var(--gold) 100%);
+  background-size: 200% 200%;
+  animation: gradientShift 4s ease infinite;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -738,18 +812,21 @@ section {
   text-transform: uppercase;
   padding: 1.2rem 3rem;
   background: transparent;
-  border: 2px solid var(--accent);
-  color: var(--accent);
-  border-radius: 4px;
-  transition: all 0.4s;
+  border: 2px solid var(--border);
+  color: var(--text);
+  border-radius: 2px;
+  transition: all 0.3s;
   cursor: none;
   text-decoration: none;
+  box-shadow: 5px 5px 0px var(--border);
 }
 
 .contact-cta:hover {
   background: var(--accent);
   color: var(--bg);
-  box-shadow: 0 0 40px var(--accent-glow);
+  border-color: var(--accent);
+  box-shadow: 5px 5px 0px var(--accent);
+  transform: translate(-2px, -2px);
   text-decoration: none;
 }
 
@@ -782,7 +859,7 @@ section {
    FOOTER
    ═══════════════════════════════════════════ */
 footer {
-  border-top: 1px solid var(--border);
+  border-top: 2px solid var(--border);
   padding: 2rem 3rem;
   text-align: center;
 }
@@ -981,7 +1058,7 @@ footer span { color: var(--accent); }
 
 <!-- Nav -->
 <nav>
-  <div class="nav-logo">GREY<span>WOLF</span></div>
+  <div class="nav-logo"><img src="assets/wolf.png" alt="Greywolf" class="nav-logo-img">GREY<span>WOLF</span></div>
   <ul class="nav-links">
     <li><a href="#story">Story</a></li>
     <li><a href="#work">Work</a></li>
@@ -1135,26 +1212,18 @@ footer span { color: var(--accent); }
       <strong>A streaming platform built on blockchain.</strong> Creators upload content, set their prices, and get paid directly — no middlemen, no delays. Users just click and watch. All the crypto runs under the hood.
     </p>
 
-    <div class="finema-stats">
-      <div class="stat-card reveal reveal-delay-1">
+    <div class="finema-stats" style="grid-template-columns: repeat(3, 1fr);">
+      <div class="stat-card reveal reveal-delay-1" style="text-align:center;">
         <div class="stat-number">90%</div>
-        <div class="stat-label">Creator Revenue Share</div>
+        <div class="stat-label">Creator Revenue</div>
       </div>
-      <div class="stat-card reveal reveal-delay-2">
-        <div class="stat-number">1</div>
-        <div class="stat-label">Solo Builder — 30 Days</div>
+      <div class="stat-card reveal reveal-delay-2" style="text-align:center;">
+        <div class="stat-number">30</div>
+        <div class="stat-label">Days to Ship</div>
       </div>
-      <div class="stat-card reveal reveal-delay-3">
-        <div class="stat-number">&lt;$0.001</div>
-        <div class="stat-label">Gas Cost Per Transaction</div>
-      </div>
-      <div class="stat-card reveal reveal-delay-4">
+      <div class="stat-card reveal reveal-delay-3" style="text-align:center;">
         <div class="stat-number">Instant</div>
-        <div class="stat-label">Settlement — No Minimums</div>
-      </div>
-      <div class="stat-card reveal reveal-delay-5">
-        <div class="stat-number">3-Layer</div>
-        <div class="stat-label">Security Architecture</div>
+        <div class="stat-label">Settlement</div>
       </div>
     </div>
 
@@ -1218,13 +1287,6 @@ footer span { color: var(--accent); }
       <h3 class="skill-name">Creativity</h3>
       <p class="skill-desc">
         I make strange connections others miss. I solve problems sideways. The unconventional path is usually the fastest one.
-      </p>
-    </div>
-    <div class="skill-card reveal reveal-delay-4">
-      <span class="skill-icon">&#9672;</span>
-      <h3 class="skill-name">AI-Augmented Execution</h3>
-      <p class="skill-desc">
-        I use AI as a force multiplier — not to replace thinking, but to ship at an inhuman pace without sacrificing craft.
       </p>
     </div>
     <div class="skill-card reveal reveal-delay-5">
@@ -1377,11 +1439,11 @@ const keyLight = new THREE.DirectionalLight(0xffffff, 1.8);
 keyLight.position.set(3, 4, 5);
 scene.add(keyLight);
 
-const fillLight = new THREE.DirectionalLight(0x5cb270, 0.5);
+const fillLight = new THREE.DirectionalLight(0x2d8a4e, 0.4);
 fillLight.position.set(-3, 1, 3);
 scene.add(fillLight);
 
-const rimLight = new THREE.DirectionalLight(0xd4952a, 0.35);
+const rimLight = new THREE.DirectionalLight(0x333333, 0.3);
 rimLight.position.set(0, 2, -4);
 scene.add(rimLight);
 
