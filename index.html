@@ -45,6 +45,7 @@ html {
   scroll-behavior: smooth;
   scrollbar-width: thin;
   scrollbar-color: var(--accent) var(--bg);
+  overflow-x: hidden;
 }
 
 body {
@@ -136,13 +137,13 @@ nav.hidden { transform: translateY(-100%); }
   font-weight: 800;
   font-size: 1.1rem;
   letter-spacing: 0.15em;
-  color: var(--accent);
+  color: var(--text);
   text-transform: uppercase;
   display: inline-flex;
   align-items: center;
 }
 
-.nav-logo span { color: var(--accent); }
+.nav-logo span { color: var(--text); }
 
 .nav-logo-img {
   height: 64px;
@@ -150,6 +151,11 @@ nav.hidden { transform: translateY(-100%); }
   vertical-align: middle;
   margin-right: 0.5rem;
   filter: brightness(1.2);
+}
+
+/* Burger — hidden on desktop */
+.burger {
+  display: none;
 }
 
 .nav-links {
@@ -192,7 +198,7 @@ nav.hidden { transform: translateY(-100%); }
   justify-content: flex-start;
   padding: 15vh 3rem 4rem;
   position: relative;
-  overflow: hidden;
+  overflow: visible;
 }
 
 .hero-bg {
@@ -225,41 +231,21 @@ nav.hidden { transform: translateY(-100%); }
   color: var(--bg);
   background: var(--accent);
   display: inline-block;
-  padding: 0.1em 0.3em;
-  line-height: 0.9;
+  padding: 0.15em 0.3em;
+  line-height: 1.1;
   letter-spacing: -0.02em;
   text-transform: uppercase;
   margin-bottom: 1rem;
-  opacity: 0;
-  animation: fadeSlideUp 0.8s 0.5s forwards;
   position: relative;
+  min-height: 1.4em;
 }
 
-.hero-name .glitch {
-  position: relative;
+.hero-name .type-letter {
   display: inline-block;
-}
-
-.hero-name .glitch::before,
-.hero-name .glitch::after {
-  content: attr(data-text);
-  position: absolute;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
   opacity: 0;
+  animation: typePop 0.1s forwards;
 }
 
-.hero-name .glitch::before {
-  color: var(--hot);
-  animation: glitch1 4s infinite;
-  clip-path: polygon(0 0, 100% 0, 100% 45%, 0 45%);
-}
-
-.hero-name .glitch::after {
-  color: var(--accent);
-  animation: glitch2 4s infinite;
-  clip-path: polygon(0 55%, 100% 55%, 100% 100%, 0 100%);
-}
 
 .hero-tagline {
   font-family: var(--font-body);
@@ -507,12 +493,9 @@ section {
 }
 
 .finema-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  display: block;
   margin-bottom: 4rem;
   position: relative;
-  overflow: visible;
 }
 
 .finema-badge {
@@ -594,7 +577,7 @@ section {
 
 .finema-stats {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: repeat(3, 1fr);
   gap: 2rem;
   margin-bottom: 4rem;
 }
@@ -665,9 +648,9 @@ section {
 .finema-eth {
   position: absolute;
   right: 8rem;
-  top: 80%;
+  top: 22%;
   transform: translateY(-50%);
-  width: 260px;
+  width: 220px;
   pointer-events: none;
   height: auto;
   opacity: 0.25;
@@ -679,6 +662,11 @@ section {
 @keyframes ethFloat {
   0%, 100% { transform: translateY(-50%); }
   50% { transform: translateY(-50%) translateY(-60px); }
+}
+
+@keyframes ethFloatMobile {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-60px); }
 }
 
 .finema-eth:hover {
@@ -821,11 +809,11 @@ section {
 }
 
 .contact-channel {
-  font-family: var(--font-mono);
-  font-size: 1.3rem;
-  font-weight: 700;
+  font-family: var(--font-body);
+  font-size: 1.1rem;
+  font-weight: 500;
   color: var(--text-dim);
-  letter-spacing: 0.2em;
+  letter-spacing: 0.05em;
   padding: 0.8rem 2rem;
   border: 1px solid var(--border);
   transition: all 0.3s;
@@ -884,6 +872,16 @@ footer span { color: var(--accent); }
   to { opacity: 1; }
 }
 
+@keyframes typePop {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
 @keyframes glitch1 {
   0%, 93%, 100% { opacity: 0; transform: translate(0); }
   94% { opacity: 0.8; transform: translate(-3px, -2px); }
@@ -926,9 +924,25 @@ footer span { color: var(--accent); }
 @media (max-width: 900px) {
   nav { padding: 1rem 1.5rem; }
   .nav-links { gap: 1.5rem; }
+  .nav-logo-img { height: 48px; }
 
   .hero { padding: 7rem 1.5rem 4rem; }
-  section { padding: 5rem 1.5rem; }
+  section { padding: 5rem 1.5rem; text-align: center; }
+
+  .section-label { justify-content: center; }
+  .section-label::before { display: none; }
+
+  .story-text p { text-align: center; }
+  .story-pull blockquote { text-align: center; border-left: none; padding-left: 0; }
+
+  .finema-inner { text-align: center; }
+  .finema-description { margin: 0 auto 4rem; }
+  .tech-grid { justify-content: center; }
+  .finema-stats { justify-items: center; }
+
+  .skills-grid { text-align: left; }
+
+  .hero-punch-italic { white-space: normal; }
 
   .story-grid {
     grid-template-columns: 1fr;
@@ -943,26 +957,119 @@ footer span { color: var(--accent); }
 
   .finema-section { padding: 5rem 1.5rem; }
 
-  .finema-header {
-    flex-direction: column;
-    align-items: flex-start;
+  .finema-eth {
+    position: relative;
+    right: auto;
+    top: auto;
+    transform: none;
+    width: 150px;
+    margin: 2rem auto;
+    animation: ethFloatMobile 3s ease-in-out infinite;
   }
 
   .contact { padding: 6rem 1.5rem; }
+  .contact-wolf { height: 250px; }
+
+  .contact-channels {
+    gap: 1.5rem;
+  }
+
+  .contact-channel {
+    font-size: 1rem;
+    padding: 0.6rem 1.5rem;
+  }
 }
 
 @media (max-width: 600px) {
-  .nav-links { display: none; }
+  nav {
+    justify-content: center;
+  }
 
-  .hero-name { font-size: clamp(3rem, 15vw, 5rem); }
+  .burger {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    position: absolute;
+    left: 1.5rem;
+    width: 32px;
+    height: 32px;
+    background: none;
+    border: none;
+    cursor: none;
+    z-index: 1001;
+    padding: 0;
+  }
 
-  .finema-stats { grid-template-columns: 1fr 1fr; }
+  .burger span {
+    display: block;
+    width: 100%;
+    height: 2px;
+    background: var(--accent);
+    transition: all 0.3s;
+    transform-origin: center;
+  }
+
+  .burger.active span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+  }
+
+  .burger.active span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .burger.active span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+  }
+
+  .nav-links {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: auto;
+    width: 280px;
+    height: 100vh;
+    background: var(--bg-elevated);
+    border-right: 1px solid var(--border);
+    flex-direction: column;
+    padding: 6rem 2.5rem 2rem;
+    gap: 2rem;
+    transform: translateX(-100%);
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    z-index: 999;
+  }
+
+  .nav-links.open {
+    transform: translateX(0);
+  }
+
+  .nav-links a {
+    font-size: 1rem;
+  }
+  .nav-logo-img { height: 36px; }
+
+  .hero-name {
+    font-size: clamp(1.8rem, 8vw, 3rem);
+    padding: 0.1em 0.2em;
+  }
+
+  .finema-stats { grid-template-columns: 1fr; }
 
   .skills-grid { grid-template-columns: 1fr; }
 
   .contact-title { font-size: clamp(2.2rem, 10vw, 3.5rem); }
 
   .contact-channels { flex-direction: column; align-items: center; }
+
+  .contact-channel {
+    font-size: 0.9rem;
+    padding: 0.5rem 1.2rem;
+    letter-spacing: 0.1em;
+  }
+
+  .contact-wolf { height: 180px; }
+
+  .finema-eth { width: 100px; }
 }
 
 /* ═══════════════════════════════════════════
@@ -977,6 +1084,12 @@ footer span { color: var(--accent); }
   height: clamp(300px, 35vw, 550px);
   z-index: 1;
   pointer-events: none;
+  opacity: 0;
+  transition: opacity 1s ease;
+}
+
+.wolf-container.loaded {
+  opacity: 1;
 }
 
 .wolf-container canvas {
@@ -1021,13 +1134,15 @@ footer span { color: var(--accent); }
     width: clamp(250px, 60vw, 400px);
     height: clamp(250px, 60vw, 400px);
     margin: 2rem auto 0;
+    opacity: 0;
+    transition: opacity 1s ease;
   }
 
   .hero-content {
     text-align: center;
   }
 
-  .hero-tagline, .hero-punch {
+  .hero-tagline, .hero-punch, .hero-punch-italic {
     margin-left: auto;
     margin-right: auto;
   }
@@ -1055,8 +1170,13 @@ footer span { color: var(--accent); }
 
 <!-- Nav -->
 <nav>
+  <button class="burger" id="burger" aria-label="Menu">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
   <div class="nav-logo"><img src="assets/wolfoption.png" alt="Wolf logo" class="nav-logo-img">GREY<span>WOLF</span></div>
-  <ul class="nav-links">
+  <ul class="nav-links" id="nav-links">
     <li><a href="#story">Story</a></li>
     <li><a href="#work">Work</a></li>
     <li><a href="#skills">Skills</a></li>
@@ -1069,9 +1189,7 @@ footer span { color: var(--accent); }
   <div class="hero-bg"></div>
   <div class="hero-content">
     <p class="hero-pre">Builder &bull; Architect &bull; Creative</p>
-    <h1 class="hero-name">
-      <span class="glitch" data-text="Greywolf">Greywolf</span>
-    </h1>
+    <h1 class="hero-name" id="hero-name"></h1>
     <p class="hero-tagline">
       <em>Your gateway to the manifestation of any idea.</em>
     </p>
@@ -1204,24 +1322,25 @@ footer span { color: var(--accent); }
         <p class="section-label">02 — Featured Project</p>
         <h2 class="section-title">FiNema</h2>
       </div>
-      <img src="assets/eth.svg" alt="Ethereum" class="finema-eth">
     </div>
+
+    <img src="assets/eth.svg" alt="Ethereum" class="finema-eth">
 
     <a href="https://finema.io" target="_blank" rel="noopener noreferrer" class="finema-domain reveal reveal-delay-1">finema.io</a>
     <p class="finema-description reveal reveal-delay-2">
       <strong>A streaming platform built on blockchain.</strong> Creators upload content, set their prices, and get paid directly — no middlemen, no delays. Users just click and watch. All the crypto runs under the hood.
     </p>
 
-    <div class="finema-stats">
-      <div class="stat-card reveal reveal-delay-1">
+    <div class="finema-stats reveal">
+      <div class="stat-card">
         <div class="stat-number">1</div>
         <div class="stat-label">Builder — 30 Days</div>
       </div>
-      <div class="stat-card reveal reveal-delay-2">
+      <div class="stat-card">
         <div class="stat-number">90%</div>
         <div class="stat-label">To Creators</div>
       </div>
-      <div class="stat-card reveal reveal-delay-3">
+      <div class="stat-card">
         <div class="stat-number">Instant</div>
         <div class="stat-label">Settlements</div>
       </div>
@@ -1265,7 +1384,7 @@ footer span { color: var(--accent); }
 <section class="skills" id="skills">
   <div class="reveal">
     <p class="section-label">03 — How I Work</p>
-    <h2 class="section-title">Skills &<br>Approach</h2>
+    <h2 class="section-title" style="font-size: clamp(1.8rem, 4vw, 3rem);">Skills & Approach</h2>
   </div>
   <div class="skills-grid">
     <div class="skill-card reveal reveal-delay-1">
@@ -1357,7 +1476,7 @@ function animateCursor() {
 animateCursor();
 
 // Hover effect on interactive elements
-document.querySelectorAll('a, button, .skill-card, .stat-card, .tech-pill, .finema-link').forEach(el => {
+document.querySelectorAll('a, button, .burger, .skill-card, .stat-card, .tech-pill, .finema-link').forEach(el => {
   el.addEventListener('mouseenter', () => cursor.classList.add('hovering'));
   el.addEventListener('mouseleave', () => cursor.classList.remove('hovering'));
 });
@@ -1375,6 +1494,52 @@ const observer = new IntersectionObserver((entries) => {
 }, { threshold: 0.15, rootMargin: '0px 0px -50px 0px' });
 
 reveals.forEach(el => observer.observe(el));
+
+/* ═══════════════════════════════════════════
+   TYPING EFFECT
+   ═══════════════════════════════════════════ */
+(function() {
+  const el = document.getElementById('hero-name');
+  const text = 'Greywolf';
+  const cursor = document.createElement('span');
+  cursor.className = 'type-cursor';
+  el.appendChild(cursor);
+
+  let i = 0;
+  const delay = 500; // initial delay
+  const speed = 200; // ms per letter
+
+  setTimeout(function type() {
+    if (i < text.length) {
+      const letter = document.createElement('span');
+      letter.className = 'type-letter';
+      letter.textContent = text[i];
+      el.insertBefore(letter, cursor);
+      i++;
+      setTimeout(type, speed);
+    } else {
+      cursor.remove();
+    }
+  }, delay);
+})();
+
+/* ═══════════════════════════════════════════
+   BURGER MENU
+   ═══════════════════════════════════════════ */
+const burger = document.getElementById('burger');
+const navLinks = document.getElementById('nav-links');
+
+burger.addEventListener('click', () => {
+  burger.classList.toggle('active');
+  navLinks.classList.toggle('open');
+});
+
+navLinks.querySelectorAll('a').forEach(link => {
+  link.addEventListener('click', () => {
+    burger.classList.remove('active');
+    navLinks.classList.remove('open');
+  });
+});
 
 /* ═══════════════════════════════════════════
    NAV HIDE ON SCROLL DOWN
@@ -1496,6 +1661,7 @@ loader.load(
 
     modelReady = true;
     if (loadingEl) loadingEl.style.display = 'none';
+    container.classList.add('loaded');
   },
   undefined,
   (error) => {
