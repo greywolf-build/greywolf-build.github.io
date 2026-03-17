@@ -55,7 +55,19 @@ body {
   overflow-x: hidden;
   cursor: none;
   line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent;
 }
+
+img { max-width: 100%; height: auto; }
+
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 4px; }
 
 a { color: var(--accent); text-decoration: none; cursor: none; }
 a:hover { text-decoration: underline; }
@@ -124,6 +136,7 @@ nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
   background: rgba(10, 9, 8, 0.8);
   border-bottom: 1px solid var(--border);
@@ -855,6 +868,7 @@ footer p {
   letter-spacing: 0.15em;
   text-transform: uppercase;
   color: var(--text-dim);
+  white-space: nowrap;
 }
 
 footer span { color: var(--accent); }
@@ -922,69 +936,14 @@ footer span { color: var(--accent); }
    RESPONSIVE
    ═══════════════════════════════════════════ */
 @media (max-width: 900px) {
-  nav { padding: 1rem 1.5rem; }
-  .nav-links { gap: 1.5rem; }
-  .nav-logo-img { height: 48px; }
-
-  .hero { padding: 7rem 1.5rem 4rem; }
-  section { padding: 5rem 1.5rem; text-align: center; }
-
-  .section-label { justify-content: center; }
-  .section-label::before { display: none; }
-
-  .story-text p { text-align: center; }
-  .story-pull blockquote { text-align: center; border-left: none; padding-left: 0; }
-
-  .finema-inner { text-align: center; }
-  .finema-description { margin: 0 auto 4rem; }
-  .tech-grid { justify-content: center; }
-  .finema-stats { justify-items: center; }
-
-  .skills-grid { text-align: left; }
-
-  .hero-punch-italic { white-space: normal; }
-
-  .story-grid {
-    grid-template-columns: 1fr;
-    gap: 3rem;
-  }
-
-  .story-pull {
-    position: relative;
-    top: auto;
-    order: -1;
-  }
-
-  .finema-section { padding: 5rem 1.5rem; }
-
-  .finema-eth {
-    position: relative;
-    right: auto;
-    top: auto;
-    transform: none;
-    width: 150px;
-    margin: 2rem auto;
-    animation: ethFloatMobile 3s ease-in-out infinite;
-  }
-
-  .contact { padding: 6rem 1.5rem; }
-  .contact-wolf { height: 250px; }
-
-  .contact-channels {
-    gap: 1.5rem;
-  }
-
-  .contact-channel {
-    font-size: 1rem;
-    padding: 0.6rem 1.5rem;
-  }
-}
-
-@media (max-width: 600px) {
   nav {
+    padding: 1rem 1.5rem;
     justify-content: center;
   }
+  .nav-logo { font-size: 0.9rem; letter-spacing: 0.1em; }
+  .nav-logo-img { height: 40px; }
 
+  /* Burger activates at tablet size */
   .burger {
     display: flex;
     flex-direction: column;
@@ -1046,7 +1005,64 @@ footer span { color: var(--accent); }
   .nav-links a {
     font-size: 1rem;
   }
-  .nav-logo-img { height: 36px; }
+
+  .hero { padding: 7rem 1.5rem 4rem; }
+  section { padding: 5rem 1.5rem; text-align: center; }
+
+  .section-label { justify-content: center; }
+  .section-label::before { display: none; }
+
+  .story-text p { text-align: center; }
+  .story-pull blockquote { text-align: center; border-left: none; padding-left: 0; }
+
+  .finema-inner { text-align: center; }
+  .finema-description { margin: 0 auto 4rem; }
+  .tech-grid { justify-content: center; }
+  .finema-stats { justify-items: center; }
+
+  .skills-grid { text-align: left; }
+
+  .hero-punch-italic { white-space: normal; }
+
+  .story-grid {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+
+  .story-pull {
+    position: relative;
+    top: auto;
+    order: -1;
+  }
+
+  .finema-section { padding: 5rem 1.5rem; }
+
+  .finema-eth {
+    position: relative;
+    right: auto;
+    top: auto;
+    transform: none;
+    width: 150px;
+    margin: 2rem auto;
+    animation: ethFloatMobile 3s ease-in-out infinite;
+  }
+
+  .contact { padding: 6rem 1.5rem; }
+  .contact-wolf { height: 250px; }
+
+  .contact-channels {
+    gap: 1.5rem;
+  }
+
+  .contact-channel {
+    font-size: 1rem;
+    padding: 0.6rem 1.5rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .nav-logo { font-size: 0.75rem; }
+  .nav-logo-img { height: 30px; }
 
   .hero-name {
     font-size: clamp(1.8rem, 8vw, 3rem);
@@ -1159,6 +1175,9 @@ footer span { color: var(--accent); }
   a { cursor: pointer; }
   .cursor, .cursor-dot { display: none; }
   .contact-cta { cursor: pointer; }
+  a, button, .burger, .skill-card, .stat-card, .tech-pill, .contact-channel, .contact-cta {
+    -webkit-tap-highlight-color: transparent;
+  }
 }
 </style>
 </head>
@@ -1581,6 +1600,7 @@ import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 const container = document.getElementById('wolf-container');
 const loadingEl = document.getElementById('wolf-loading');
 
+try {
 // Scene
 const scene = new THREE.Scene();
 
@@ -1588,7 +1608,11 @@ const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(35, 1, 0.1, 100);
 camera.position.set(0, 0, 5);
 
-// Renderer
+// Renderer — test WebGL support
+const canvas = document.createElement('canvas');
+const gl = canvas.getContext('webgl2') || canvas.getContext('webgl');
+if (!gl) throw new Error('WebGL not supported');
+
 const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 renderer.setSize(container.clientWidth, container.clientHeight);
@@ -1715,6 +1739,11 @@ function animate() {
 }
 
 animate();
+
+} catch (e) {
+  console.warn('WebGL not available, hiding 3D wolf:', e);
+  container.style.display = 'none';
+}
 </script>
 
 </body>
