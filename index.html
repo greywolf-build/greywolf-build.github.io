@@ -669,7 +669,7 @@ section {
   pointer-events: none;
   height: auto;
   opacity: 0.25;
-  filter: brightness(0) invert(1) drop-shadow(0 0 30px rgba(92, 178, 112, 0.6)) drop-shadow(0 0 80px rgba(92, 178, 112, 0.3)) drop-shadow(0 0 120px rgba(92, 178, 112, 0.15));
+  filter: brightness(0) invert(1) drop-shadow(0 0 30px rgba(80, 140, 255, 0.6)) drop-shadow(0 0 80px rgba(80, 140, 255, 0.3)) drop-shadow(0 0 120px rgba(80, 140, 255, 0.15));
   animation: ethFloat 3s ease-in-out infinite;
   transition: opacity 0.4s, filter 0.4s;
 }
@@ -686,7 +686,17 @@ section {
 
 .finema-eth:hover {
   opacity: 0.5;
-  filter: brightness(0) invert(1) drop-shadow(0 0 30px rgba(92, 178, 112, 0.6)) drop-shadow(0 0 80px rgba(92, 178, 112, 0.3));
+  filter: brightness(0) invert(1) drop-shadow(0 0 30px rgba(80, 140, 255, 0.7)) drop-shadow(0 0 80px rgba(80, 140, 255, 0.4));
+}
+
+.milligram-logo {
+  opacity: 1;
+  filter: drop-shadow(0 0 30px rgba(218, 165, 32, 0.6)) drop-shadow(0 0 80px rgba(218, 165, 32, 0.3)) drop-shadow(0 0 120px rgba(218, 165, 32, 0.15));
+}
+
+.milligram-logo:hover {
+  opacity: 1;
+  filter: drop-shadow(0 0 30px rgba(218, 165, 32, 0.7)) drop-shadow(0 0 80px rgba(218, 165, 32, 0.4));
 }
 
 /* ═══════════════════════════════════════════
@@ -898,22 +908,6 @@ footer span { color: var(--accent); }
   50% { opacity: 0; }
 }
 
-@keyframes glitch1 {
-  0%, 93%, 100% { opacity: 0; transform: translate(0); }
-  94% { opacity: 0.8; transform: translate(-3px, -2px); }
-  95% { opacity: 0; transform: translate(0); }
-  96% { opacity: 0.6; transform: translate(2px, 1px); }
-  97% { opacity: 0; }
-}
-
-@keyframes glitch2 {
-  0%, 95%, 100% { opacity: 0; transform: translate(0); }
-  96% { opacity: 0.7; transform: translate(3px, 2px); }
-  97% { opacity: 0; transform: translate(-1px, -1px); }
-  98% { opacity: 0.5; transform: translate(-2px, 1px); }
-  99% { opacity: 0; }
-}
-
 @keyframes marquee {
   from { transform: translateX(0); }
   to { transform: translateX(-50%); }
@@ -927,11 +921,6 @@ footer span { color: var(--accent); }
 @keyframes scrollPulse {
   0%, 100% { opacity: 0.3; transform: scaleY(1); }
   50% { opacity: 1; transform: scaleY(1.2); }
-}
-
-@keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
 }
 
 /* ═══════════════════════════════════════════
@@ -1023,6 +1012,7 @@ footer span { color: var(--accent); }
   .finema-description { margin: 0 auto 4rem; }
   .tech-grid { justify-content: center; }
   .finema-stats { justify-items: center; }
+  .finema-links { justify-content: center; }
 
   .skills-grid { text-align: left; }
 
@@ -1376,8 +1366,7 @@ footer span { color: var(--accent); }
     <div class="reveal reveal-delay-3">
       <p class="finema-tech-label">What I Built — Solo</p>
       <div class="tech-grid">
-        <span class="tech-pill">FiNema</span>
-        <span class="tech-pill">Vortex (DEX)</span>
+        <span class="tech-pill">Streaming Platform</span>
         <span class="tech-pill">Smart Contracts</span>
         <span class="tech-pill">Architecture</span>
         <span class="tech-pill">Security</span>
@@ -1407,10 +1396,119 @@ footer span { color: var(--accent); }
   </div>
 </section>
 
+<!-- Divider -->
+<div class="marquee-wrap">
+  <div class="marquee" style="animation-duration: 20s;">
+    <span class="accent-text">Milligram</span>
+    <span>&bull;</span>
+    <span>Tokenized Gold</span>
+    <span>&bull;</span>
+    <span class="accent-text">Ethereum Mainnet</span>
+    <span>&bull;</span>
+    <span>Micro-Denomination Gold</span>
+    <span>&bull;</span>
+    <span class="accent-text">Backed by PAXG</span>
+    <span>&bull;</span>
+    <span>Non-Custodial</span>
+    <span>&bull;</span>
+    <span class="accent-text">Milligram</span>
+    <span>&bull;</span>
+    <span>Tokenized Gold</span>
+    <span>&bull;</span>
+    <span class="accent-text">Ethereum Mainnet</span>
+    <span>&bull;</span>
+    <span>Micro-Denomination Gold</span>
+    <span>&bull;</span>
+    <span class="accent-text">Backed by PAXG</span>
+    <span>&bull;</span>
+    <span>Non-Custodial</span>
+    <span>&bull;</span>
+  </div>
+</div>
+
+<!-- ═══════════ MILLIGRAM ═══════════ -->
+<section class="finema-section" id="milligram">
+  <div class="finema-inner">
+    <div class="finema-header reveal">
+      <div>
+        <div class="finema-badge"><span class="dot"></span> dApp</div>
+        <p class="section-label">03 — Gold Trading Platform</p>
+        <h2 class="section-title">Milligram</h2>
+      </div>
+    </div>
+
+    <img src="assets/mg.svg" alt="Milligram" class="finema-eth milligram-logo">
+
+    <a href="https://milligram.tv" target="_blank" rel="noopener noreferrer" class="finema-domain reveal reveal-delay-1">milligram.tv</a>
+    <p class="finema-description reveal reveal-delay-2">
+      <strong>Physical gold on the blockchain at milligram scale.</strong> A decentralized platform that breaks PAXG (gold-backed tokens) into micro-denominations — 1 MG equals 1 milligram of real gold stored in Brink's London vaults. Full DEX with order book trading, a Gold Vault for minting and redeeming, and Uniswap-powered swaps. No KYC, no middlemen, 100% self-custody.
+    </p>
+
+    <div class="finema-stats reveal reveal-delay-2">
+      <div class="stat-card">
+        <div class="stat-number">31,103</div>
+        <div class="stat-label">MG per Troy Ounce</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">Ethereum</div>
+        <div class="stat-label">Mainnet Deployed</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">5</div>
+        <div class="stat-label">Tokens in Ecosystem</div>
+      </div>
+    </div>
+
+    <div class="reveal reveal-delay-3">
+      <p class="finema-tech-label">Features</p>
+      <div class="tech-grid">
+        <span class="tech-pill">Gold Vault (Mint/Redeem)</span>
+        <span class="tech-pill">Order Book DEX</span>
+        <span class="tech-pill">Uniswap Swaps</span>
+        <span class="tech-pill">3D Gold Crystal</span>
+        <span class="tech-pill">Candlestick Charts</span>
+        <span class="tech-pill">Deflationary MGTV Burns</span>
+        <span class="tech-pill">Dual Fee Tiers</span>
+        <span class="tech-pill">Whitepaper</span>
+      </div>
+    </div>
+
+    <div class="reveal reveal-delay-4" style="margin-top: 3rem;">
+      <p class="finema-tech-label">Tech Stack</p>
+      <div class="tech-grid">
+        <span class="tech-pill">Solidity 0.8</span>
+        <span class="tech-pill">Hardhat</span>
+        <span class="tech-pill">ethers.js</span>
+        <span class="tech-pill">React 18</span>
+        <span class="tech-pill">Redux</span>
+        <span class="tech-pill">Three.js</span>
+        <span class="tech-pill">ApexCharts</span>
+        <span class="tech-pill">OpenZeppelin</span>
+        <span class="tech-pill">Ethereum L1</span>
+        <span class="tech-pill">PAXG</span>
+      </div>
+    </div>
+
+    <div class="reveal reveal-delay-5" style="margin-top: 3rem;">
+      <div class="finema-links">
+        <a href="https://milligram.tv" target="_blank" rel="noopener noreferrer" class="finema-link">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+          Launch App
+        </a>
+        <a href="https://etherscan.io/address/0xbeC771cb728a3dF2ea1FEaC9c25DacDa871bB1a2" target="_blank" rel="noopener noreferrer" class="finema-link">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+          View on Etherscan
+        </a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
 <!-- ═══════════ SKILLS ═══════════ -->
 <section class="skills" id="skills">
   <div class="reveal">
-    <p class="section-label">03 — How I Work</p>
+    <p class="section-label">04 — How I Work</p>
     <h2 class="section-title" style="font-size: clamp(1.8rem, 4vw, 3rem);">Skills & Approach</h2>
   </div>
   <div class="skills-grid">
@@ -1450,7 +1548,7 @@ footer span { color: var(--accent); }
 <!-- ═══════════ CONTACT ═══════════ -->
 <section class="contact" id="contact">
   <div class="reveal">
-    <p class="section-label">04 — Let's Build</p>
+    <p class="section-label">05 — Let's Build</p>
   </div>
   <h2 class="contact-title reveal reveal-delay-1">
     Got an <span class="gradient-text">idea?</span>
@@ -1720,7 +1818,7 @@ let modelReady = false;
 const loader = new GLTFLoader();
 
 loader.load(
-  'assets/wolf.glb',
+  'assets/wolf2.glb',
   (gltf) => {
     wolfModel = gltf.scene;
 

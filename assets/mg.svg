@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg width="800px" height="800px" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- PAXG-style gold radial gradient for circle -->
+    <radialGradient id="goldCircle" cx="38%" cy="32%" r="70%">
+      <stop offset="0%" stop-color="#F5DC6A"/>
+      <stop offset="55%" stop-color="#E4CE4D"/>
+      <stop offset="100%" stop-color="#C8A800"/>
+    </radialGradient>
+    <!-- Dark gradient for text to contrast on gold -->
+    <linearGradient id="darkText" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#3a2200"/>
+      <stop offset="100%" stop-color="#1a0e00"/>
+    </linearGradient>
+    <filter id="textShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="0.3" stdDeviation="0.3" flood-color="#000" flood-opacity="0.25"/>
+    </filter>
+  </defs>
+
+  <g fill="none">
+    <!-- PAXG gold circle -->
+    <circle fill="url(#goldCircle)" cx="16" cy="16" r="16"/>
+
+    <!-- White swoosh — full opacity like PAXG -->
+    <path d="M18.603 6.912c1.738 1.227 3.548 1.364 5.863 1.79 2.106.391 2.553 2.542 1.591 5.28a9.384 9.384 0 00-.18-.292l.18.292-.017.045.017-.045c1.467 2.492 1.456 5.191-1.719 6.572-5.653 2.46-5.99 7.305-11.333 4.697A6.71 6.71 0 0111 23.74l-.208-.237-.193-.033c-3.586-.635-5.94-2.579-3.762-7.539 1.927-4.383.206-8.696 6.116-8.504h.002c1.628-1.527 3.505-2.024 5.647-.515z" fill="#FFF" opacity="0.55"/>
+
+    <!-- Subtle white inner ring -->
+    <circle cx="16" cy="16" r="13.2" stroke="#FFF" stroke-width="0.3" opacity="0.45"/>
+
+    <!-- MG in deep dark brown/amber — pops on gold -->
+    <text
+      x="16"
+      y="20.5"
+      text-anchor="middle"
+      font-family="Georgia, 'Times New Roman', serif"
+      font-size="13"
+      font-weight="bold"
+      font-style="italic"
+      fill="url(#darkText)"
+      filter="url(#textShadow)"
+      letter-spacing="0.5"
+    >MG</text>
+
+    <!-- Dark underline accent -->
+    <line x1="10.5" y1="22" x2="21.5" y2="22" stroke="#1a0e00" stroke-width="0.5" opacity="0.7"/>
+  </g>
+</svg>
